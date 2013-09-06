@@ -1,5 +1,7 @@
 require 'sinatra'
-require 'controller'
+require './win_controller'
+require './mac_controller'
+
 
 get '/' do 
 "<h2>Welcome to ServUby</h2>
@@ -13,9 +15,14 @@ get '/:command' do
   browser = params[:browser]
   proxy = params[:proxy]
   command = params[:command]
-  platform = "Win" if RUBY_PLATFORM.include? "mingw"
-  platform = "Mac" if RUBY_PLATFORM.include? "darwin"
-  control_object = "#{platform}Controller".constantize.new
-  control_object.send("#{browser}_#{command}",proxy)
+  url = params[:url]
+  url = "about:blank" unless url
+  control_object = WinController.new if RUBY_PLATFORM.include? "mingw"
+  control_object = MacController.new if RUBY_PLATFORM.include? "darwin"
+  begin
+  control_object.send("#{browser}_#{command}", url, proxy)
+  rescue NoMethodError => msg
+    puts msg
+  end
 end
 
