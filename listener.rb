@@ -1,6 +1,6 @@
 require 'sinatra'
-require './win_controller'
-require './mac_controller'
+require 'C:\Users\Browserstack\Documents\gitrepos\browser_server\win_controller'
+require 'C:\Users\Browserstack\Documents\gitrepos\browser_server\mac_controller'
 
 set :bind, '0.0.0.0'
 
