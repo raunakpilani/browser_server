@@ -10,9 +10,6 @@ class MacController
   def safari_start(proxy = nil)
   end
 
-  def ie_start(proxy = nil)
-  end
-
   def firefox_stop
   end
 
@@ -22,9 +19,6 @@ class MacController
   def safari_stop
   end
 
-  def ie_stop
-  end
-
   def firefox_clean
   end
 
@@ -32,9 +26,6 @@ class MacController
   end
 
   def safari_clean
-  end
-
-  def ie_clean
   end
 
 end
