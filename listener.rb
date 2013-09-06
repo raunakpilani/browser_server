@@ -13,7 +13,9 @@ get '/:command' do
   browser = params[:browser]
   proxy = params[:proxy]
   command = params[:command]
-  control_object = Controller.new
+  platform = "Win" if RUBY_PLATFORM.include? "mingw"
+  platform = "Mac" if RUBY_PLATFORM.include? "darwin"
+  control_object = "#{platform}Controller".constantize.new
   control_object.send("#{browser}_#{command}",proxy)
 end
 
