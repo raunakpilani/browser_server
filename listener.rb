@@ -2,6 +2,7 @@ require 'sinatra'
 require './win_controller'
 require './mac_controller'
 
+set :bind, '0.0.0.0'
 
 get '/' do 
 "<h2>Welcome to ServUby</h2>
