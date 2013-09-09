@@ -1,15 +1,17 @@
 require 'sinatra'
-require 'C:\Users\Browserstack\Documents\gitrepos\browser_server\win_controller'
-require 'C:\Users\Browserstack\Documents\gitrepos\browser_server\mac_controller'
+require 'pathname'
+require File.dirname(Pathname.new(__FILE__).realpath.to_s).to_s + '/win_controller' 
+require File.dirname(Pathname.new(__FILE__).realpath.to_s).to_s + '/mac_controller' 
 
 set :bind, '0.0.0.0'
 
 get '/' do 
-"<h2>Welcome to ServUby</h2>
+"<h2>Welcome to the Browser Server</h2>
 Requests are given as:<br>
-/browser-command<br>
-browsers: firefox, chrome, safari<br>
-commands: start, stop and clean<br>" 
+/[command]?browser=[browser]&proxy=true&url=[\"http://[url]\"]<br>
+browsers: firefox, chrome, safari or ie (only for windows)<br>
+commands: start, stop and clean<br>
+proxy = true sets proxy as 127.0.0.1:3128, leave option out for no proxy<br>" 
 end
 
 get '/:command' do
