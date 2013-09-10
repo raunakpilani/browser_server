@@ -1,4 +1,3 @@
-
 class MacController
 
   def initialize
@@ -13,7 +12,7 @@ class MacController
 
   def firefox_start(url, proxy = nil)
     if proxy == "true"
-      spawn("#{@firefox_path} -CreateProfile Empty && path=`ls -d #{@firefox_user}` && echo 'user_pref(\"    network.proxy.http\", \"#{@proxy_host}\");\\nuser_pref(\"network.proxy.http_port\", #{@proxy_port});\\nuser_pre    f(\"network.proxy.type\", 1);' >> $path/prefs.js && #{@firefox_path} -P Empty #{url}")
+      spawn("#{@firefox_path} -CreateProfile Empty && path=`ls -d #{@firefox_user}` && echo 'user_pref(\"network.proxy.http\", \"#{@proxy_host}\");\\nuser_pref(\"network.proxy.http_port\", #{@proxy_port});\\nuser_pre    f(\"network.proxy.type\", 1);' >> $path/prefs.js && #{@firefox_path} -P Empty #{url}")
     else
       spawn("\"#{@firefox_path}\" -CreateProfile Empty && \"#{@firefox_path}\" -P Empty #{url}")
     end
@@ -26,7 +25,7 @@ class MacController
     if proxy == "true"
       spawn("#{@chrome_exec} --enable-udd-profiles --user-data-dir=\"#{@chrome_user}\" --profile-directory=\"Empty\" --proxy-server=\"#{@proxy_host}:#{@proxy_port}\" #{url}")
     else
-      spawn("#{@chrome_exec} --enable-udd-profiles --user-data-dir=\"#{@chrome_user}\" --profile-dire    ctory=\"Empty\" #{url}")
+      spawn("#{@chrome_exec} --enable-udd-profiles --user-data-dir=\"#{@chrome_user}\" --profile-directory=\"Empty\" #{url}")
     end
 
     proxy_statement = proxy ? "with proxy #{@proxy_host}:#{@proxy_port}" : ""
@@ -35,7 +34,7 @@ class MacController
 
   def safari_start(url, proxy = nil)
     if proxy == "true"
-      spawn("sudo /usr/sbin/networksetup -setwebproxy \"wi-fi\" #{@proxy_host} #{@proxy_port} && sudo /usr/sbin/n    etworksetup -setwebproxystate \"wi-fi\" on && open -a /Applications/Safari.app #{url}")
+      spawn("sudo /usr/sbin/networksetup -setwebproxy \"wi-fi\" #{@proxy_host} #{@proxy_port} && sudo /usr/sbin/networksetup -setwebproxystate \"wi-fi\" on && open -a /Applications/Safari.app #{url}")
     else
       spawn("open -a /Applications/Safari.app #{url}")
     end
