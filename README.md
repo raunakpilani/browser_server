@@ -1,22 +1,18 @@
-Browser Server
+Chromium For BrowserStack WebRTC
+================================
 
-run using:
->ruby listener.rb
+ - Get the chromium.tgz from your nearest Live Team Member or from the official BS-HDD
+ - Untar in a directory of your choice
+    tar xvzf chromium.tgz
+ - Clone depot\_tools anywhere you like, preferably outside the chromium directory
+    git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+ - Add the path to the depot\_tools directory to your ~/\.[ba|z]shrc file
+ - Get into the chromium source directory
+    cd <path\_to\_chromium>/src
+ - Run the following:
+```
+GYP_DEFINES=fastbuild=1 build/gyp_chromium
+ - Followed by:
+    ninja -C out/Release chrome
 
-requests are made as follows: 
-
-http://127.0.0.1:4567/[command]?browser=[browser]&url="[url]"
-
-for proxy setting to 127.0.0.1:3128 use: 
-
-http://127.0.0.1:4567/[command]?browser=[browser]&url="[url]"&proxy=true
-
->where:
-
->[command] - start, stop, clean
-
->[browser] - firefox, chrome, ie (only in windows), safari
-
->[url] - must be preceded with http/https where needed
-
-also in the repo is auto-it script to keep server alive, this can be compiled to exe and then added to start-up
+ - Chromium is now built!
